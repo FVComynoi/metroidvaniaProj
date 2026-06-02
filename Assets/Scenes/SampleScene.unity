@@ -352,8 +352,9 @@ GameObject:
   - component: {fileID: 1898729950}
   - component: {fileID: 1898729949}
   - component: {fileID: 1898729952}
+  - component: {fileID: 1898729956}
   - component: {fileID: 1898729954}
-  - component: {fileID: 1898729953}
+  - component: {fileID: 1898729955}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -469,8 +470,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e040a143b33d44f8adfbc7de0ae7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
---- !u!61 &1898729953
-BoxCollider2D:
+  moveSpeed: 6.65
+  jumpForce: 0
+--- !u!50 &1898729954
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898729948}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &1898729955
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -503,45 +533,21 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.25, y: 2.1875}
-    newSize: {x: 0.8, y: 1.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.25, y: 2.1875}
-  m_EdgeRadius: 0
---- !u!50 &1898729954
-Rigidbody2D:
-  serializedVersion: 5
+  m_Offset: {x: 0.00831902, y: -0.02079761}
+  m_Size: {x: 1.0836189, y: 2.0294378}
+  m_Direction: 0
+--- !u!114 &1898729956
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898729948}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d71ac6b663109419cdce1e28048216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimController
 --- !u!1 &2010207308
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,8 +680,8 @@ Transform:
   m_GameObject: {fileID: 2010207308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.98, y: -2.72, z: 0}
-  m_LocalScale: {x: 5.2733, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0563, y: -2.72, z: 0}
+  m_LocalScale: {x: 27.553587, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
