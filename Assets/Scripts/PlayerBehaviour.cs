@@ -4,24 +4,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    #region Animatio Variables
+    #region Animation Variables
     PlayerAnimController playerAnimController;
     SpriteRenderer spriteRenderer;
     #endregion
     #region Movement Variables
-    [SerializeField] float moveSpeed = 5f, jumpForce;
+    [SerializeField] float moveSpeed = 5f, jumpForce = 10f;
     private InputSystem_Actions inputSystemActions;
     private InputAction move, attack, jump;
     private float inputDirectionX => inputSystemActions.Player.Move.ReadValue<Vector2>().x;
-    Rigidbody rb;
+    private bool isJumpPressed => inputSystemActions.Player.Jump.WasPressedThisFrame();
+    Rigidbody2D rb;
+    private GroundChecker groundChecker;
     #endregion
     private void Awake()
     {
         playerAnimController = GetComponent<PlayerAnimController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        groundChecker = GetComponentInChildren<GroundChecker>();
         inputSystemActions = new InputSystem_Actions();
         inputSystemActions.Enable();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         /*move = inputSystemActions.Player.Move;
         jump = inputSystemActions.Player.Jump;
         attack = inputSystemActions.Player.Attack;*/
@@ -29,8 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         CheckMovementForAnim();
-        Vector2 moveDirection = new Vector2(inputDirectionX, 0f);
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        CheckJumping();
     }
 
     private void CheckMovementForAnim()
@@ -47,26 +49,22 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimController.SetIsMovingParam(inputDirectionX!=0f); 
         FlipSprite();
     }
-
     void FlipSprite()
     {
         if (inputDirectionX > 0)
-        {
             spriteRenderer.flipX = false;
-        }
         else if  (inputDirectionX < 0)
             spriteRenderer.flipX = true;
     }
     void FixedUpdate()
     {
-        //rb.AddForce(jumpForce);
+        //Vector3 moveDirection = new Vector2(inputDirectionX, 0f);
+        rb.linearVelocityX = inputDirectionX * moveSpeed;
     }
-    private void OnEnable()
+
+    void CheckJumping()
     {
-        //move.Enable();
-    }
-    private void OnDisable()
-    {
-        //move.Disable();
+        if(isJumpPressed && groundChecker.IsGrounded())
+            rb.linearVelocityY = jumpForce;
     }
 }
