@@ -34,7 +34,6 @@ public class PlayerBehaviour : MonoBehaviour
         CheckMovementForAnim();
         CheckJumping();
     }
-
     private void CheckMovementForAnim()
     {
         /*if (inputDirectionX != 0)
